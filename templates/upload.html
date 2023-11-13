@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Recipe</title>
+</head>
+<body>
+    <h1>{{ _('upload recipe') }}</h1>
+    <form method="POST" action="{{ url_for('recette_bp.upload') }}" enctype="multipart/form-data">
+        <label for="recipeName">{{ _('Recipe name') }}</label>
+        <input type="text" id="recipeName" name="recipeName" required><br>
+
+        <label for="cuisine">{{ _('Cuisine Type') }}</label>
+        <input type="text" id="cuisine" name="cuisine" required><br>
+
+        <label for="ingredients">{{ _('Ingredients') }}</label>
+        <textarea id="ingredients" name="ingredients" rows="4" required></textarea><br>
+
+        <label for="instructions">{{ _('Instructions') }}</label>
+        <textarea id="instructions" name="instructions" rows="4" required></textarea><br>
+
+        <label for="image">{{ _('Image') }}</label>
+        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" required><br>
+
+        <input type="submit" name="submit" value="{{ _('Upload') }}">
+    </form>
+
+    <h1>Already have recipes? <a href="{{ url_for('recette_bp.home') }}">{{ _('view recipes') }}</a></h1>
+</body>
+</html>

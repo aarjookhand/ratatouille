@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('Recipe List ') }}</title>
+    <style>
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        
+        #top-link {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #007bff;
+            color: #010101;
+            padding: 10px;
+            text-decoration: none;
+            display: none;
+        }
+
+        h1 {
+            color: #232f3e;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+        }
+
+        h3 {
+            color: #232f3e;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <a href="{{ url_for('recette_bp.upload') }}" id="top-link">{{ _(' Upload a new recipe') }}</a>
+
+    <h1>{{ _(' Recipe List') }}</h1>
+
+
+
+    {% if recette %}
+        <ul>
+            {% for recipe in recette %}
+                <li>
+                    <h3>{{ recipe.recipe_name }}</h3>
+                    <p>{{ recipe.cuisine }}</p>
+                    <p>Ingredients: {{ recipe.ingredients }}</p>
+                    <p>Instructions: {{ recipe.instructions }}</p>
+                    <p>Uploaded by: {{ recipe.user_id }}</p>
+
+                    {% if recipe.image %}
+                        <img src="data:image/png;base64,{{ recipe.image }}" alt="Recipe Image" style="max-width: 300px; max-height: 300px;">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ _('No recipes available. ') }}</p>
+    {% endif %}
+
+
+    <script>
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById('top-link').style.display = 'block';
+            } else {
+                document.getElementById('top-link').style.display = 'none';
+            }
+        }
+    </script>
+
+
+</body>
+</html>
