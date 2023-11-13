@@ -24,6 +24,19 @@
             display: none;
         }
 
+
+        #logout-link {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.678);
+            color: #000000;
+            padding: 10px;
+            text-decoration: none;
+
+        }
+
+
         h1 {
             color: #ffffff;
             margin-bottom: 20px;
@@ -71,7 +84,8 @@
 
 
 
-    <a href="{{ url_for('recette_bp.upload') }}" id="top-link">{{ _(' share a recipe') }}</a>
+    <a href="{{ url_for('recette_bp.upload') }}" id="top-link">{{ _(' share a recipe') }}</a><br>
+    <a href="{{ url_for('auth.logout') }}" id="logout-link">{{ _(' logout') }}</a>
 
     <h1>{{ _(' our recipies') }}</h1>
 

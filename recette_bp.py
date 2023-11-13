@@ -1,15 +1,8 @@
 from flask import *
-import sqlite3
 from pymongo import MongoClient
-from gridfs import GridFS
-from flask_wtf import FlaskForm
-from flask_login import LoginManager, UserMixin, login_user, login_required
-
-from flask_login import current_user
-from flask import flash, redirect, url_for, jsonify
+from flask_login import login_required, current_user
 from dotenv import load_dotenv
 from flask_babel import Babel, _
-
 import base64
 from flask_mail import Message, Mail
 from elasticsearch import Elasticsearch
@@ -69,6 +62,7 @@ es = Elasticsearch([{
 
 
 @recette_bp.route('/home')
+@login_required
 def home():
     recette = collection.find({})
     return render_template('home.html', recette=recette, get_locale=get_locale)

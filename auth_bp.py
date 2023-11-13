@@ -1,12 +1,10 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask import request
+from flask_login import LoginManager, UserMixin, login_user, current_user 
 from flask_babel import Babel, _
 import sqlite3
-from werkzeug.security import check_password_hash
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -255,3 +253,8 @@ def login():
 
 
 
+
+@auth_bp.route('/logout', methods=['GET'])
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('auth.display_welcome'))
