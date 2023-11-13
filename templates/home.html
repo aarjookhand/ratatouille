@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ _('Recipe List ') }}</title>
+    <title>{{ _('Our recipies ') }}</title>
     <style>
         body {
             font-family: 'Amazon Ember', Arial, sans-serif;
             margin: 20px;
             padding: 0;
-            background-color: #f3f3f3;
+            background-color: #000000;
         }
 
         
@@ -17,15 +17,15 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #007bff;
-            color: #010101;
+            background-color: rgba(255, 255, 255, 0.678);
+            color: #000000;
             padding: 10px;
             text-decoration: none;
             display: none;
         }
 
         h1 {
-            color: #232f3e;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -71,9 +71,9 @@
 
 
 
-    <a href="{{ url_for('recette_bp.upload') }}" id="top-link">{{ _(' Upload a new recipe') }}</a>
+    <a href="{{ url_for('recette_bp.upload') }}" id="top-link">{{ _(' share a recipe') }}</a>
 
-    <h1>{{ _(' Recipe List') }}</h1>
+    <h1>{{ _(' our recipies') }}</h1>
 
 
 
@@ -82,7 +82,7 @@
             {% for recipe in recette %}
                 <li>
                     <h3>{{ recipe.recipe_name }}</h3>
-                    <p>{{ recipe.cuisine }}</p>
+                    <p>- {{ recipe.cuisine }}</p>
                     <p>Ingredients: {{ recipe.ingredients }}</p>
                     <p>Instructions: {{ recipe.instructions }}</p>
                     <p>Uploaded by: {{ recipe.user_id }}</p>
